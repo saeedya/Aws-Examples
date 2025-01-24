@@ -1,0 +1,16 @@
+tasks:
+  - name: Install python
+    command: |
+      sudo apt-get update
+      sudo apt-get install -y python3 python3-pip
+  - name: Create Python symlink
+    command: |
+      sudo ln -s /usr/bin/python3 /usr/bin/python
+  - name: aws-cli
+    before:
+      export AWS_CLI_AUTO_PROMPT=on-partial
+      cd /workspace
+      curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+      unzip awscli-bundle.zip
+      sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+      cd $THEIA_WORKSPACE_ROOT
