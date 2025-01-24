@@ -7,8 +7,9 @@ tasks:
     command: |
       sudo ln -s /usr/bin/python3 /usr/bin/python
   - name: aws-cli
-    before:
-      export AWS_CLI_AUTO_PROMPT=on-partial
+    env:
+      AWS_CLI_AUTO_PROMPT: on-partial
+    before: |
       cd /workspace
       curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
       unzip awscli-bundle.zip
